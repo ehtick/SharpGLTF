@@ -1,4 +1,4 @@
-name: Publish PREVIEW artifacts to NUGET
+name: Publish PREVIEW artifacts to GITHUB
 
 on: workflow_dispatch
     
@@ -30,7 +30,7 @@ jobs:
         name: nuget-packages
 
     - name: Push to NuGet
-      run: dotnet nuget push "*.nupkg" --api-key ${{secrets.SharpGLTF_PublishToNuget}} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push "*.nupkg" --api-key ${{secrets.SharpGLTF_PublishToGithub}} --source https://nuget.pkg.github.com/${{github.repository_owner}}
 
     - name: create tag
       uses: ./.github/actions/PushGithubTag
